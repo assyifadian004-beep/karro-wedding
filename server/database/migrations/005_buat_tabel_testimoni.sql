@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS testimoni (
+  id SERIAL PRIMARY KEY,
+  nama_klien TEXT NOT NULL,
+  isi TEXT NOT NULL,
+  foto TEXT,
+  dibuat_pada TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

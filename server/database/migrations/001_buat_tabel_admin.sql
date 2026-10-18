@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS admin (
+  id SERIAL PRIMARY KEY,
+  nama TEXT NOT NULL,
+  username TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  dibuat_pada TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

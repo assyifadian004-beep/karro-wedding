@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS paket (
+  id SERIAL PRIMARY KEY,
+  nama TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  harga INTEGER NOT NULL CHECK (harga >= 0),
+  kapasitas TEXT NOT NULL,
+  deskripsi_singkat TEXT NOT NULL DEFAULT '',
+  deskripsi_lengkap TEXT NOT NULL DEFAULT '',
+  foto TEXT,
+  urutan INTEGER NOT NULL DEFAULT 0,
+  dibuat_pada TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  diubah_pada TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
