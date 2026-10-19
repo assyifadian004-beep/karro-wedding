@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import AdminLayout from '../components/layout/AdminLayout';
@@ -18,11 +19,23 @@ import KelolaTestimoni from '../pages/admin/KelolaTestimoni';
 import KelolaKontak from '../pages/admin/KelolaKontak';
 import RekapPermintaan from '../pages/admin/RekapPermintaan';
 
-function PublikLayout({ children }) {
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+function PublikLayout() {
   return (
     <>
       <Header />
-      {children}
+      <main id="konten">
+        <Outlet />
+      </main>
       <Footer />
     </>
   );
@@ -31,14 +44,18 @@ function PublikLayout({ children }) {
 export default function AppRouter() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<PublikLayout><Home /></PublikLayout>} />
-        <Route path="/tentang" element={<PublikLayout><Tentang /></PublikLayout>} />
-        <Route path="/paket" element={<PublikLayout><Paket /></PublikLayout>} />
-        <Route path="/paket/:slug" element={<PublikLayout><DetailPaket /></PublikLayout>} />
-        <Route path="/galeri" element={<PublikLayout><Galeri /></PublikLayout>} />
-        <Route path="/testimoni" element={<PublikLayout><Testimoni /></PublikLayout>} />
-        <Route path="/login" element={<PublikLayout><Login /></PublikLayout>} />
+        <Route element={<PublikLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/tentang" element={<Tentang />} />
+          <Route path="/paket" element={<Paket />} />
+          <Route path="/paket/:slug" element={<DetailPaket />} />
+          <Route path="/galeri" element={<Galeri />} />
+          <Route path="/testimoni" element={<Testimoni />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
         <Route
           path="/admin"
           element={
@@ -54,7 +71,6 @@ export default function AppRouter() {
           <Route path="kontak" element={<KelolaKontak />} />
           <Route path="permintaan" element={<RekapPermintaan />} />
         </Route>
-        <Route path="*" element={<PublikLayout><NotFound /></PublikLayout>} />
       </Routes>
     </BrowserRouter>
   );
