@@ -6,6 +6,7 @@ import { sanitize } from '../../utils/sanitize';
 import { createBooking } from '../../api/bookingApi';
 
 const awal = { nama_lengkap: '', no_wa: '', rencana_tanggal: '', lokasi: '', catatan: '' };
+const minTanggal = new Date().toISOString().slice(0, 10);
 
 export default function BookingForm({ paket, nomorAdmin, onTerkirim }) {
   const [values, setValues] = useState(awal);
@@ -88,7 +89,7 @@ export default function BookingForm({ paket, nomorAdmin, onTerkirim }) {
       </div>
       <div className={field('rencana_tanggal')}>
         <label htmlFor="rencana_tanggal">Rencana Tanggal</label>
-        <input id="rencana_tanggal" name="rencana_tanggal" type="date" min={new Date().toISOString().slice(0, 10)} value={values.rencana_tanggal} onChange={ubah} aria-invalid={Boolean(errors.rencana_tanggal)} required />
+        <input id="rencana_tanggal" name="rencana_tanggal" type="date" min={minTanggal} value={values.rencana_tanggal} onChange={ubah} aria-invalid={Boolean(errors.rencana_tanggal)} required />
         {errors.rencana_tanggal && <span className="form-error"><AlertCircle size={14} aria-hidden="true" />{errors.rencana_tanggal}</span>}
       </div>
       <div className="form-field">

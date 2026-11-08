@@ -63,12 +63,7 @@ export const mockPaket = [
   },
 ];
 
-export const mockGaleri = [1, 2, 3, 4, 5, 6].map((i) => ({
-  id: i,
-  paket_id: i <= 2 ? 1 : i <= 4 ? 2 : 3,
-  file: placeholder,
-  keterangan: `Dokumentasi pernikahan ${i}`,
-}));
+export const mockGaleri = [];
 
 export const mockTestimoni = [
   { id: 1, nama_klien: 'Dinda & Raka', isi: 'Tim Karro sangat sigap dari konsultasi sampai hari-H. Dekorasi sesuai konsep yang kami minta.', foto: null },

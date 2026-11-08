@@ -56,7 +56,7 @@ function waLink(noWa) {
   return `https://wa.me/${digits}`;
 }
 
-export default function Footer({ kontak }) {
+export default function Footer({ kontak, variant = 'default' }) {
   const [pengaturan, setPengaturan] = useState(null);
 
   useEffect(() => {
@@ -67,9 +67,10 @@ export default function Footer({ kontak }) {
 
   const data = kontak || pengaturan || {};
   const wa = waLink(data.no_wa_admin);
+  const footerClass = `site-footer${variant === 'navy' ? ' site-footer--navy' : ''}`;
 
   return (
-    <footer className="site-footer">
+    <footer className={footerClass}>
       <div className="container">
         <div className="site-footer__top">
           <Link to="/" className="site-footer__brand">

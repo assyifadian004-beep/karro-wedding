@@ -30,13 +30,15 @@ function ScrollToTop() {
 }
 
 function PublikLayout() {
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
   return (
     <>
       <Header />
       <main id="konten">
         <Outlet />
       </main>
-      <Footer />
+      <Footer variant={isHome ? 'navy' : 'default'} />
     </>
   );
 }
